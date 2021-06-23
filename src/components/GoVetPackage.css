@@ -1,0 +1,23 @@
+.GoVetPackage {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 6px;
+  border-color: #ebedef;
+  margin: 4vmin 12vmin;
+  overflow: hidden;
+}
+
+.GoVetPackage-name {
+  display: flex;
+  background: #fafbfc;
+  border-bottom: 1px solid;
+  border-color: #ebedef;
+  padding: 2vmin 12vmin;
+  font-size: 24px;
+  font-weight: bold;
+}
+

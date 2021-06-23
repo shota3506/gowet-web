@@ -1,0 +1,28 @@
+.GoVetAnalyses {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 2vmin 12vmin;
+}
+
+.GoVetAnalyses-name {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  text-align: left;
+  padding: 0 8vmin 2vmin 8vmin;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.GoVetAnalyses-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border: 0.5px solid;
+  border-color: #ebedef;
+  border-radius: 6px;
+}

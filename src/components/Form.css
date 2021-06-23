@@ -1,0 +1,25 @@
+.Form {
+}
+
+.Form-text {
+  min-width: 60%;
+  line-height: 36px;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 0 16px;
+  margin: 0 16px;
+  font-size: 16px;
+}
+
+.Form-submit {
+  min-width: 64px;
+  line-height: 28px;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 0 16px;
+  margin: 0 16px;
+  color: white;
+  background: black;
+  font-weight: bold;
+  cursor:pointer;
+}
