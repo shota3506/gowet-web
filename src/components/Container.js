@@ -9,7 +9,7 @@ export class Container extends React.Component {
     super(props);
     this.handlePathChange = this.handlePathChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.runVet = this.runVet.bind(this);
+    this.handleVet = this.handleVet.bind(this);
 
     this.state = { path: "", goVet: [] };
   }
@@ -19,17 +19,18 @@ export class Container extends React.Component {
   }
 
   handleSubmit() {
-    this.runVet(this.state.path);
+    this.handleVet(this.state.path);
   }
 
-  runVet(path) {
+  handleVet(path) {
     const host = "http://localhost:8080/";
+
+    this.props.onLoading();
 
     fetch(host + path)
       .then((res) => res.json())
       .then(
         (res) => {
-          console.log(res.results);
           this.setState({
             path: res.path,
             goVet: res.results,
@@ -38,7 +39,8 @@ export class Container extends React.Component {
         (error) => {
           console.log(error);
         }
-      );
+      )
+      .then(() => this.props.onLoad());
   }
 
   render() {

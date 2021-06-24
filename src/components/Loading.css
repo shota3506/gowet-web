@@ -1,0 +1,21 @@
+.Loading {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  opacity: 0.5;
+  background-color: gray;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.Loading-logo {
+  height: 128px;
+  pointer-events: none;
+  user-select: none;
+}
