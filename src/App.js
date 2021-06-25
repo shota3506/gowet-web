@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 
-import { Loading } from "./components/Loading.js";
+import { Top } from "./pages/Top.js";
 import { Header } from "./components/Header.js";
-import { Container } from "./components/Container.js";
+import { Loading } from "./components/Loading.js";
 
 export class App extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export class App extends React.Component {
       <div className="App">
         {loading && <Loading />}
         <Header className="App-header" title={"Go Vet"} />
-        <Container
+        <Top
           loading={loading}
           onLoading={this.handleLoading}
           onLoad={this.handleLoad}
