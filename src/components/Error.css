@@ -1,0 +1,18 @@
+.Error {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 6px;
+  border-color: #f5c6cb;
+  background: #f8d7da;
+  margin: 4vmin 12vmin;
+  overflow: hidden;
+}
+
+.Error-message {
+  padding: 4px 0;
+  color: #721c24
+}

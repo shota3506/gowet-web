@@ -5,11 +5,11 @@ import { GoVetPackage } from "./GoVetPackage.js";
 
 export class GoVet extends React.Component {
   render() {
-    const goVet = this.props.goVet;
+    const vet = this.props.vet;
 
     return (
       <div className="GoVet">
-        {Object.entries(goVet).map(([key, value]) => {
+        {Object.entries(vet).map(([key, value]) => {
           return <GoVetPackage key={key} pkg={key} analyses={value} />;
         })}
       </div>

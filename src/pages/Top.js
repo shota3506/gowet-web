@@ -1,17 +1,18 @@
 import React from "react";
-import "./Container.css";
+import "./Top.css";
 
-import { Form } from "./Form.js";
-import { GoVet } from "./GoVet.js";
+import { Error } from "../components/Error.js";
+import { Form } from "../components/Form.js";
+import { GoVet } from "../components/GoVet.js";
 
-export class Container extends React.Component {
+export class Top extends React.Component {
   constructor(props) {
     super(props);
     this.handlePathChange = this.handlePathChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleVet = this.handleVet.bind(this);
 
-    this.state = { path: "", goVet: [] };
+    this.state = { path: "", error: null, vet: null };
   }
 
   handlePathChange(path) {
@@ -28,16 +29,26 @@ export class Container extends React.Component {
     this.props.onLoading();
 
     fetch(host + path)
-      .then((res) => res.json())
+      .then((r) => {
+        if (r.ok) {
+          return r.json();
+        }
+        throw r.statusText;
+      })
       .then(
-        (res) => {
+        (r) => {
           this.setState({
-            path: res.path,
-            goVet: res.results,
+            path: r.path,
+            error: null,
+            vet: r.results,
           });
         },
-        (error) => {
-          console.log(error);
+        (e) => {
+          this.setState({
+            path: path,
+            error: e,
+            vet: null,
+          });
         }
       )
       .then(() => this.props.onLoad());
@@ -45,23 +56,23 @@ export class Container extends React.Component {
 
   render() {
     const placeholder = "github.com/tenntenn/greeting";
-
     const path = this.state.path;
-    const goVet = this.state.goVet;
+    const error = this.state.error;
+    const vet = this.state.vet;
 
     return (
-      <div className="Container">
+      <div className="Top">
         <Form
           placeholder={placeholder}
           value={path}
           onValueChange={this.handlePathChange}
           onSubmit={this.handleSubmit}
         />
-
-        <GoVet goVet={goVet} />
+        {error !== null && <Error message={error}/>}
+        {vet !== null && <GoVet vet={vet} />}
       </div>
     );
   }
 }
 
-export default Container;
+export default Top;
