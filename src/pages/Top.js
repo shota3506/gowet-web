@@ -1,7 +1,7 @@
 import React from "react";
 import "./Top.css";
 
-import { Error } from "../components/Error.js";
+import { ErrorMessage } from "../components/ErrorMessage.js";
 import { Form } from "../components/Form.js";
 import { GoVet } from "../components/GoVet.js";
 
@@ -35,7 +35,7 @@ export class Top extends React.Component {
         if (r.ok) {
           return r.json();
         }
-        throw r.statusText;
+        throw new Error(r.statusText);
       })
       .then(
         (r) => {
@@ -43,7 +43,7 @@ export class Top extends React.Component {
           this.setState({ path: r.path, error: null, vet: vet });
         },
         (e) => {
-          this.setState({ path: path, error: e, vet: null });
+          this.setState({ path: path, error: e.message, vet: null });
         }
       )
       .then(() => this.props.onLoad());
@@ -63,7 +63,7 @@ export class Top extends React.Component {
           onValueChange={this.handlePathChange}
           onSubmit={this.handleSubmit}
         />
-        {error !== null && <Error message={error} />}
+        {error !== null && <ErrorMessage message={error} />}
         {vet !== null && <GoVet vet={vet} />}
       </div>
     );
