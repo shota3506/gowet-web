@@ -1,4 +1,4 @@
-.Error {
+.ErrorMessage {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -12,7 +12,7 @@
   overflow: hidden;
 }
 
-.Error-message {
+.ErrorMessage-message {
   padding: 4px 0;
   color: #721c24
 }
