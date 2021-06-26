@@ -10,7 +10,6 @@ export class Top extends React.Component {
     super(props);
     this.handlePathChange = this.handlePathChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleVet = this.handleVet.bind(this);
 
     this.state = { path: "", error: null, vet: null };
   }
@@ -20,15 +19,18 @@ export class Top extends React.Component {
   }
 
   handleSubmit() {
-    this.handleVet(this.state.path);
+    this.runGoVet(this.state.path);
   }
 
-  handleVet(path) {
-    const host = "http://localhost:8080/";
+  runGoVet(path) {
+    const host = process.env.REACT_APP_GOWET_HOST;
+    const url = host + "/" + path;
 
     this.props.onLoading();
 
-    fetch(host + path)
+    fetch(url, {
+      method: "GET",
+    })
       .then((r) => {
         if (r.ok) {
           return r.json();
@@ -37,18 +39,11 @@ export class Top extends React.Component {
       })
       .then(
         (r) => {
-          this.setState({
-            path: r.path,
-            error: null,
-            vet: r.results,
-          });
+          const vet = r.results;
+          this.setState({ path: r.path, error: null, vet: vet });
         },
         (e) => {
-          this.setState({
-            path: path,
-            error: e,
-            vet: null,
-          });
+          this.setState({ path: path, error: e, vet: null });
         }
       )
       .then(() => this.props.onLoad());
@@ -68,7 +63,7 @@ export class Top extends React.Component {
           onValueChange={this.handlePathChange}
           onSubmit={this.handleSubmit}
         />
-        {error !== null && <Error message={error}/>}
+        {error !== null && <Error message={error} />}
         {vet !== null && <GoVet vet={vet} />}
       </div>
     );

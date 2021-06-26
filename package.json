@@ -16,7 +16,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fmt": "prettier --write 'src/**/*.js'"
+    "fmt": "prettier './src/**/*.js'",
+    "fmt:write": "prettier --write './src/**/*.js'",
+    "lint": "eslint './src/**/*.js'",
+    "lint:fix": "eslint --fix './src/**/*.js'"
   },
   "eslintConfig": {
     "extends": [
